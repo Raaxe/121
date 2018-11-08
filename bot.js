@@ -3,7 +3,7 @@ const client = new Discord.Client();
  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-   client.user.setActivity("اكتب اي شي",{type: 'WATCHING'})
+   client.user.setActivity("كل يوم صدمه",{type: 'WATCHING'})
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -37,7 +37,7 @@ const queue = new Map();
  
  
  
-var prefix = "البرفكس" 
+var prefix = "!" 
 client.on('message', async msg => {
     if (msg.author.bot) return undefined;
    
@@ -51,7 +51,7 @@ client.on('message', async msg => {
     let command = msg.content.toLowerCase().split(" ")[0];
     command = command.slice(prefix.length)
  
-    if (command === `play`) {
+    if (command === `p`) {
         const voiceChannel = msg.member.voiceChannel;
         if (!voiceChannel) return msg.channel.send('يجب توآجد حضرتك بروم صوتي .');
         const permissions = voiceChannel.permissionsFor(msg.client.user);
@@ -88,7 +88,7 @@ client.on('message', async msg => {
                     .setDescription(`**الرجآء من حضرتك إختيآر رقم المقطع** :
 ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
  
-                    .setFooter("By ! ♯ ,RaaXe ♪ ,🌹💔#1008")
+                    .setFooter("حقوق ابو الشيخ")
                     msg.channel.sendEmbed(embed1).then(message =>{message.delete(20000)})
                    
                     // eslint-disable-next-line max-depth
@@ -112,7 +112,7 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
  
             return handleVideo(video, msg, voiceChannel);
         }
-    } else if (command === `skip`) {
+    } else if (command === `s`) {
         if (!msg.member.voiceChannel) return msg.channel.send('أنت لست بروم صوتي .');
         if (!serverQueue) return msg.channel.send('لا يتوفر مقطع لتجآوزه');
         serverQueue.connection.dispatcher.end('تم تجآوز هذآ المقطع');
@@ -230,7 +230,7 @@ function play(guild, song) {
 }
  
 const adminprefix = "$vip";
-const devs = ['274923685985386496'];
+const devs = ['498947642110509067'];
 client.on('message', message => {
   var argresult = message.content.split(` `).slice(1).join(' ');
     if (!devs.includes(message.author.id)) return;
@@ -259,8 +259,8 @@ client.on("message", message => {
   const embed = new Discord.RichEmbed()
       .setColor("#000000")
       .setDescription(`
-${prefix}play ⇏ لتشغيل أغنية برآبط أو بأسم
-${prefix}skip ⇏ لتجآوز الأغنية الحآلية
+${prefix}p ⇏ لتشغيل أغنية برآبط أو بأسم
+${prefix}s ⇏ لتجآوز الأغنية الحآلية
 ${prefix}stop ⇏ إيقآف الأغنية مؤقتا
 ${prefix}resume ⇏ لموآصلة الإغنية بعد إيقآفهآ مؤقتا
 ${prefix}vol ⇏ لتغيير درجة الصوت 100 - 0
